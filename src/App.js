@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/core";
 import Feed from './feed'
 
 
-export function App() {
+export default function App() {
     return (
         <Box width="100vw" minHeight={'100vh'} bg="gray.100">
             <Feed/>
