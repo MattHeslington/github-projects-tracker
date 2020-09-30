@@ -12,7 +12,7 @@ import Repo from './components/repo'
 function transformFilters({ startDate, endDate, language }) {
     const transformedFilters = {};
 
-    const languageQuery = language ? `language:${language} ` : '';
+    const languageQuery = language ? `language:${language} ` : "";
     const dateQuery = `created:${startDate}..${endDate}`;
 
     transformedFilters.q = languageQuery + dateQuery;
@@ -37,17 +37,14 @@ export function Feed() {
 
     useEffect(() => {
         const endDate = moment().subtract(1, 'day').format();
-        //ie. startDate = get the endDate, then subtract 1 day, 1 month or 1 year (dateJump)
-        const startDate = moment(endDate).subtract(1, dateJump).format();
+        const startDate = moment(endDate).subtract(1, dateJump).format(); //ie. startDate = get the endDate, then subtract 1 day, 1 month or 1 year (dateJump)
         setEndDate(endDate);
         setStartDate(startDate);
     },[dateJump, language ]);
 
     useEffect(() => {
         //don't proceed without a startDate
-        if (!startDate) {
-            return;
-        }
+        if (!startDate) {return;}
         const filters = transformFilters({ language, startDate, endDate });
         const filtersQuery = new URLSearchParams(filters).toString();
 
@@ -89,9 +86,9 @@ export function Feed() {
                 )
                 return (
                     <Box>
-                        {groupTitle}
+                        { groupTitle }
                         <SimpleGrid columns={viewType === "list" ? 1 : 3} spacing="15px">
-                            { repoGroup.items.map((repo) => (
+                            {repoGroup.items.map((repo) => (
                                 <Repo isListView={viewType === "list"} repo={repo} />
                             ))}
                         </SimpleGrid>
@@ -100,7 +97,10 @@ export function Feed() {
             })}
 
             <Flex alignItems="center" justify={'center'} my="20px">
-                <Button variantColor="blue">Load next group</Button>
+                <Button isLoading={loading} onClick={() => {
+                    setEndDate(startDate);
+                    setStartDate(moment(startDate).subtract(1, dateJump).format())
+                }} variantColor="blue">Load next group</Button>
             </Flex>
 
         </Box>

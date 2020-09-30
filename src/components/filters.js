@@ -13,7 +13,7 @@ export function Filters(props) {
         dateJump,
         language,
         onLanguageChange,
-    } = props;
+        } = props;
 
     return (
         <Stack isInline>
@@ -35,7 +35,6 @@ export function Filters(props) {
                     borderWidth={1}
                     px="15px"
                     fontWeight={400}
-                    leftIcon='calendar'
                     _focus={{ boxShadow: 'none'}}
                     >
                     <Icon name="calendar" mr={3}/>
