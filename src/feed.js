@@ -7,6 +7,7 @@ import PageHeader from './components/page-header'
 import GroupTitle from './components/group-title'
 import Filters from './components/filters'
 import Repo from './components/repo'
+import PageLoader from './page-loader'
 
 
 function transformFilters({ startDate, endDate, language }) {
@@ -40,6 +41,9 @@ export function Feed() {
         const startDate = moment(endDate).subtract(1, dateJump).format(); //ie. startDate = get the endDate, then subtract 1 day, 1 month or 1 year (dateJump)
         setEndDate(endDate);
         setStartDate(startDate);
+
+        setRepositories([]);
+
     },[dateJump, language ]);
 
     useEffect(() => {
@@ -63,7 +67,7 @@ export function Feed() {
     return (
         <Box maxWidth="1200px" mx="auto">
             <PageHeader/>
-
+            { repositories.length === 0 && loading && <PageLoader/> }
             <Flex alignItems="center" justifyContent="space-between" mb="25px">
                 <GroupTitle startDate={repositories?.[0]?.startDate} endDate={repositories?.[0]?.endDate}/>
                 <Filters

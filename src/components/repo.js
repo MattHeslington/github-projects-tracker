@@ -1,5 +1,5 @@
 import React from 'react'
-
+import moment from 'moment'
 import { Box, Flex, Heading, Image, Link, Button, Stack, Text } from "@chakra-ui/core";
 import { GoIssueOpened, GoRepoForked, GoStar } from 'react-icons/all'
 
@@ -10,13 +10,14 @@ const Repo = (props) => {
             <Flex flex={1} flexDir="column">
                 {!isListView && (
                     <Flex mb="15px">
-                        <Image src="https://uifaces.co/our-content/donated/KtCFjlD4.jpg"
+                        <Image
+                            src={repo.owner.avatar_url}
                             w={'35px'}
                             h={'35px'}
                             rounded="5px"
                         />
                         <Box ml="10px">
-                            <Heading fontSize="16px">Matt Heslington</Heading>
+                            <Heading fontSize="16px">{repo.owner.login}</Heading>
                             <Text fontSize="13px">View profile</Text>
                         </Box>
                     </Flex>
@@ -27,18 +28,20 @@ const Repo = (props) => {
                         <Flex fontSize="19px" fontWeight={700} color="purple.700" mb="3px">
                             {isListView && (
                                 <>
-                                    <Text color="gray.600">Built by &middot; <Link fontWeight="bold" href="https://github.com/MattHeslington" fontSize="14px" target="_blank">Matt Heslington</Link> &middot; May 29, 2020</Text>
+                                    <Text color="gray.600">Built by &middot; <Link fontWeight="bold" href={repo.owner.html_url} fontSize="14px" target="_blank">
+                                        {repo.owner.login}
+                                    </Link>{" "}&middot; {moment(repo.created_at).format("MMMM D, YYYY")}</Text>
                                 </>
                             )}
 
                         </Flex>
                     </Box>
-                    <Text fontSize="14px" color="gray.900">Hunt the most starred projects on any date on Github</Text>
+                    <Text fontSize="14px" color="gray.900">{repo.description}</Text>
                 </Box>
-                <Stack isInline>
-                    <Button as="a" cursor="pointer" leftIcon={GoStar} variant="link" fontSize="14px" iconSpacing="4px" _hover={{textDecoration:'none'}}> 3487</Button>
-                    <Button as="a" cursor="pointer" leftIcon={GoRepoForked} variant="link" fontSize="14px" iconSpacing="4px" _hover={{textDecoration:'none'}}> 23</Button>
-                    <Button as="a" cursor="pointer" leftIcon={GoIssueOpened} variant="link" fontSize="14px" iconSpacing="4px" _hover={{textDecoration:'none'}}> 23</Button>
+                <Stack isInline spacing="10px">
+                    <Button as="a" href={`${repo.html_url}/stargazers`} cursor="pointer" leftIcon={GoStar} variant="link" fontSize="14px" iconSpacing="4px" _hover={{textDecoration:'none'}}>{repo.stargazers_count}</Button>
+                    <Button as="a" href={`${repo.html_url}/network/members`} cursor="pointer" leftIcon={GoRepoForked} variant="link" fontSize="14px" iconSpacing="4px" _hover={{textDecoration:'none'}}> 23</Button>
+                    <Button as="a" href={`${repo.html_url}/issues`} cursor="pointer" leftIcon={GoIssueOpened} variant="link" fontSize="14px" iconSpacing="4px" _hover={{textDecoration:'none'}}>{repo.open_issues_count}</Button>
                 </Stack>
             </Flex>
         </Box>
