@@ -14,7 +14,7 @@ export function PageLoader() {
             bg="white"
             zIndex={999}
         >
-            <Spinner thickness="4px" color="gray.400" />
+            <Spinner thickness="5px" color="gray.400" />
 
         </Flex>
     )
