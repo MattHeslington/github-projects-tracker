@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
-import useFetch from 'use-http/dist'
+import useFetch from 'use-http'
 import { Box, Button, Flex, SimpleGrid } from "@chakra-ui/core";
 
 import PageHeader from './components/page-header'
