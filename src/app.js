@@ -5,7 +5,7 @@ import Feed from './feed'
 
 export function App() {
     return (
-        <Box width="100vw" minHeight={'100vh'} bg="gray.100">
+        <Box width="100vw" minHeight={'100vh'} bg="white">
             <Feed/>
         </Box>
     )

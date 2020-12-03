@@ -104,7 +104,7 @@ export function Feed() {
                 <Button isLoading={loading} onClick={() => {
                     setEndDate(startDate);
                     setStartDate(moment(startDate).subtract(1, dateJump).format())
-                }} variantColor="blue">Load next group</Button>
+                }} variantColor="blue">Load more</Button>
             </Flex>
 
         </Box>

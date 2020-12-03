@@ -9,9 +9,9 @@ const PageHeader = () => {
         <Flex justifyContent="space-between" alignItems="center" pt="15px">
             <Brand/>
             <Stack isInline>
-                <Button leftIcon={FaGithub}>View Source</Button>
+                {/* <Button leftIcon={FaGithub}>View Source</Button>
                 <Button leftIcon={FaChrome} variantColor="red">Use Extension</Button>
-                <Button leftIcon={FaTwitter} variantColor="purple">Tweet</Button>
+                <Button leftIcon={FaTwitter} variantColor="purple">Tweet</Button> */}
             </Stack>
         </Flex>
     )

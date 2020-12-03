@@ -7,7 +7,7 @@ const Repo = (props) => {
     const { isListView = false, repo} = props;
     return (
         <Box borderWidth={1} bg="white" p="15px" rounded="5px">
-            <Flex flex={1} flexDir="column">
+            <Flex flex={1} flexDir="column" style={{justifyContent: "space-between"}}>
                 {!isListView && (
                     <Flex mb="15px">
                         <Image
@@ -17,8 +17,8 @@ const Repo = (props) => {
                             rounded="5px"
                         />
                         <Box ml="10px">
-                            <Heading fontSize="16px">{repo.owner.login}</Heading>
-                            <Text fontSize="13px">View profile</Text>
+                            <Heading fontSize="16px">{repo.full_name}</Heading>
+                            <Text fontSize="13px"><Link href={repo.owner.url}>View profile</Link></Text>
                         </Box>
                     </Flex>
                 )}
@@ -38,6 +38,7 @@ const Repo = (props) => {
                     </Box>
                     <Text fontSize="14px" color="gray.900">{repo.description}</Text>
                 </Box>
+
                 <Stack isInline spacing="10px">
                     <Button as="a" href={`${repo.html_url}/stargazers`} cursor="pointer" leftIcon={GoStar} variant="link" fontSize="14px" iconSpacing="4px" _hover={{textDecoration:'none'}}>{repo.stargazers_count}</Button>
                     <Button as="a" href={`${repo.html_url}/network/members`} cursor="pointer" leftIcon={GoRepoForked} variant="link" fontSize="14px" iconSpacing="4px" _hover={{textDecoration:'none'}}> 23</Button>
